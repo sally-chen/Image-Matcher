@@ -1,0 +1,12 @@
+function [result_binary] = isLocalMaximum(x, y, Image_matrix,window_size)
+    if (y-window_size < 1 || y+extend_range > size(input_image,1) || x-extend_range >= 1 && x+extend_range <= size(input_image,2))
+        result_binary = 0;
+    else
+        window = zeros(window_size,window_size);
+        window(:,:)  = Image_matrix(y-window_size:y+window_size,x-window_size:x+window_size);
+        if(Image_matrix(y,x)==max(window(:)))
+            result_binary = 1;
+        else
+            result_binary = 0;
+        end
+    end

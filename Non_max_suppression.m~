@@ -1,0 +1,26 @@
+Radius = 5;
+domain = fspecial('disk', Radius);
+cornered_points_suppressed = ordfilt2(cornered_points,nnz(domain),domain);
+imshow(imread( fullfile( './' , '_building.jpg' )));
+
+[M, N] = size(im);
+    for i=1:M
+        for j=1:N
+            if out(i,j) > im(i,j)
+                out(i,j) = 0;
+            end
+        end
+    end     
+
+cornered_points_suppressed = (cornered_points_suppressed > cornered_points)
+
+for y = 1:size(input_image,1)
+    for x = 1:size(input_image,2)
+        if(cornered_points_suppressed(y,x) > 0 && cornered_points_suppressed(y,x)cornered_points(y,x))
+               drawnow
+%                 drawAndLabelBox(x,y,patch_size,patch_size);
+                viscircles([x y],5,'color','b');
+        end
+    end
+end
+
